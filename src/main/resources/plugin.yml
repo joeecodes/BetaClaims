@@ -1,0 +1,8 @@
+name: BetaClaims
+version: '${project.version}'
+main: me.buryings.betaclaims.BetaClaims
+api-version: 1.17
+authors: [ Buryings ]
+depend:
+  - DeltaCore
+description: Claim your land to protect your creations from unwanted players

@@ -1,0 +1,8 @@
+message-config:
+  prefix: "&7[&bClaims&7]"
+  no-permission: "%prefix% &cYou do not have permission to use this command"
+  reloaded-plugin: "%prefix% &aReloaded config file"
+claims-config:
+  claimed-chunk: "&aYou have claimed this chunk."
+  chunk-claimed: "%prefix% &cThis chunk is already claimed."
+  cant-build-here: "%prefix% &cYou are not allowed to build in this claim."
