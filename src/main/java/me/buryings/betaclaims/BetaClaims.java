@@ -1,8 +1,11 @@
 package me.buryings.betaclaims;
 
 import club.deltapvp.deltacore.api.DeltaPlugin;
+import lombok.Getter;
+import lombok.Setter;
 import me.buryings.betaclaims.commands.CommandClaim;
 import me.buryings.betaclaims.commands.CommandClaimList;
+import me.buryings.betaclaims.commands.CommandReload;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -17,16 +20,27 @@ import java.util.UUID;
 public final class BetaClaims extends DeltaPlugin {
 
     private HashMap<String, UUID> chunks;
-    private BetaClaims plugin;
+
+    @Getter @Setter
+    private static BetaClaims instance;
     private File claimsconfigfile;
     private FileConfiguration claimsconfig;
+
 
 
     @Override
     public void onEnable() {
 
+        instance = this;
+
+        loadFiles(this, "config.yml", "claims.yml");
+
         this.chunks = new HashMap<>();
-        registerCommands();
+
+        // Registers Commands
+        registerCommands(new CommandClaim(this), new CommandClaimList(this), new CommandReload(this));
+        Bukkit.getLogger().info("[Beta Claims] Registered Commands");
+
         registerListeners();
 
         // Gets/Saves config.yml
@@ -48,14 +62,6 @@ public final class BetaClaims extends DeltaPlugin {
         Bukkit.getLogger().info("[Beta Claims] Disabled v1.0.0");
     }
 
-    public void registerCommands() {
-
-        new CommandClaim(this);
-        new CommandClaimList(this);
-
-        Bukkit.getLogger().info("[Beta Claims] Registered Commands");
-    }
-
     public void registerListeners() {
         PluginManager pm = Bukkit.getPluginManager();
 
@@ -69,10 +75,12 @@ public final class BetaClaims extends DeltaPlugin {
 
     }
     public boolean isChunk(String chunk) {
+
         return chunks.containsKey(chunk);
     }
 
     public UUID getOwner(String chunk) {
+
         return chunks.get(chunk);
     }
 
@@ -93,7 +101,9 @@ public final class BetaClaims extends DeltaPlugin {
     }
 
     public FileConfiguration getClaimsConfig() {
+
         return this.claimsconfig;
+
     }
 
 }

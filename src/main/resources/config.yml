@@ -6,3 +6,6 @@ claims-config:
   claimed-chunk: "&aYou have claimed this chunk."
   chunk-claimed: "%prefix% &cThis chunk is already claimed."
   cant-build-here: "%prefix% &cYou are not allowed to build in this claim."
+  claim-list:
+    - "&7--- &bYour Claims &7---"
+    - "%claims%"
